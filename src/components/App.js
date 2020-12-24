@@ -27,7 +27,7 @@ class App extends Component {
     searchQuery: '',
     page: 1,
     showModal: false,
-    largeImageUrl: null,
+    largeImageURL: null,
   };
 
   componentDidUpdate (prevProps, prevState) {
@@ -73,10 +73,6 @@ class App extends Component {
   };
 
   closeModal = e => {
-    if (e.target.nodeName === 'IMG') {
-      return;
-    }
-
     this.setState(prevState => ({
       showModal: !prevState.showModal,
       largeImageURL: null,
@@ -84,7 +80,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, loading, error, showModal, largeImageUrl } = this.state;
+    const { images, loading, error, showModal, largeImageURL } = this.state;
     return (
       <div>
         <Searchbar onSubmit={this.handleSearchFormSubmit}/>
@@ -94,7 +90,7 @@ class App extends Component {
         {images.length > 0 && (
           <ImageGallery images={images} onClick={this.toggleModal} />
         )}
-        {showModal && <Modal largeImageURL={largeImageUrl} onClose={this.closeModal} />}
+        {showModal && <Modal largeImageURL={largeImageURL} onClose={this.closeModal} />}
         {loading && <Loader />}
         {images.length > 0 && !loading && (
           <Button onButtonLoad={this.fetchImages}/>
