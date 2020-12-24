@@ -1,4 +1,5 @@
 import React, { Component  } from "react";
+import PropTypes from 'prop-types';
 
 import imagesApi from "../services/imagesAPI"
 import Searchbar from "./Searchbar/Searchbar";
@@ -9,6 +10,16 @@ import Notification from './Notification';
 import Modal from './Modal/Modal';
 
 class App extends Component {
+  static propTypes= {
+    images: PropTypes.array,
+    loading: PropTypes.bool,
+    error: PropTypes.string,
+    searchQuery: PropTypes.string,
+    page: PropTypes.number,
+    showModal: PropTypes.bool,
+    largeImageUrl: PropTypes.string
+  }
+
   state = {
     images: [],
     loading: false,
@@ -25,6 +36,10 @@ class App extends Component {
 
     if(prevQuery !== nextQuery) {
       this.fetchImages();
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
     }
   };
 

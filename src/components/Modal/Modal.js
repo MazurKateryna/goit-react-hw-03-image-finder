@@ -3,11 +3,11 @@ import './Modal.css';
 
 export default class Modal extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.closingByEsc);
+    window.addEventListener('keydown', this.closeByEsc);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.closingByEsc);
+    window.removeEventListener('keydown', this.closeByEsc);
   }
 
   closeByEsc = e => {
